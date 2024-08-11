@@ -45,7 +45,7 @@ public class GermanSystemTab extends TabPanel {
         }
 
         
-        //TODO calcular el resultado
+        //TODO calcular el resultado (debe mostrar el valor de cada una de las cuotas y el numero de cuota)
         resultado = monto + tna + cuotas;
         resultArea.setText("Resultado: " + resultado);
         
