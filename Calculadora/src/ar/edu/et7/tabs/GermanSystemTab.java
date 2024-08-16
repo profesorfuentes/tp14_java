@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GermanSystemTab extends TabPanel {
     private JTextField montoField;
@@ -15,7 +17,7 @@ public class GermanSystemTab extends TabPanel {
         montoField = new JTextField(10);
         tnaField = new JTextField(10);
         cuotasField = new JTextField(10);
-        resultArea = new JTextArea(5, 20);
+        resultArea = new JTextArea(10, 30); // Ampliado para manejar más texto
         createPanel();
     }
 
@@ -27,29 +29,47 @@ public class GermanSystemTab extends TabPanel {
     }
     
     private void calcular(ActionEvent e) {
-        float resultado = 0;
-        
-        //TODO declarar una variable para cada campo
+        // Variables para los campos
         float monto;
         float tna;
         int cuotas;
 
         try {
-        	//TODO asignar el valor de cada campo a una variable
-	        monto = Float.parseFloat(montoField.getText());
-	        tna = Float.parseFloat(tnaField.getText());
-	        cuotas = Integer.parseInt(cuotasField.getText());
+            // Asignar el valor de cada campo a una variable
+            monto = Float.parseFloat(montoField.getText());
+            tna = Float.parseFloat(tnaField.getText());
+            cuotas = Integer.parseInt(cuotasField.getText());
         } catch (NumberFormatException ex) {
             resultArea.setText("Error en la entrada: " + ex.getMessage());
             return;
         }
 
+        // Calcular el resultado como calculadora con sistema alemán
+        List<String> resultados = calcularCuotasAleman(monto, tna, cuotas);
+        resultArea.setText(String.join("\n", resultados));
+    }
+
+    private List<String> calcularCuotasAleman(float monto, float tna, int cuotas) {
+        List<String> resultado = new ArrayList<>();
         
-        //TODO calcular el resultado (debe mostrar el valor de cada una de las cuotas y el numero de cuota)
-        resultado = monto + tna + cuotas;
-        resultArea.setText("Resultado: " + resultado);
+        // Convertir la TNA a una tasa de interés mensual
+        float tasaInteresMensual = tna / 100 / 12;
         
+        // Calcular el monto fijo de principal por cuota
+        float cuotaFijaPrincipal = monto / cuotas;
         
+        // Calcular el valor de cada cuota
+        for (int i = 1; i <= cuotas; i++) {
+            float saldoDeuda = monto - (cuotaFijaPrincipal * (i - 1));
+            float interes = saldoDeuda * tasaInteresMensual;
+            float cuotaTotal = cuotaFijaPrincipal + interes;
+
+            // Formatear el resultado para mostrar en el JTextArea
+            resultado.add(String.format("Cuota %d: %.2f (Principal: %.2f, Interés: %.2f)",
+                    i, cuotaTotal, cuotaFijaPrincipal, interes));
+        }
+        
+        return resultado;
     }
 
     private void addInputFields(JPanel panel, JTextField field1, JTextField field2, JTextField field3, ActionListener action, JTextArea resultArea) {
@@ -102,5 +122,4 @@ public class GermanSystemTab extends TabPanel {
         JScrollPane scrollPane = new JScrollPane(resultArea);
         panel.add(scrollPane, gbc);
     }
-    
 }
