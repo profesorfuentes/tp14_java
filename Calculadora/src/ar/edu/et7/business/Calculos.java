@@ -8,6 +8,12 @@ public class Calculos implements CalculosInterface {
 		return 0;
 	}
 
+	@Override
+	public float tnaTea(float tna, float importe) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	//TODO implementar los métodos de la interface
 
 
