@@ -1,6 +1,9 @@
 package ar.edu.et7.tabs;
 
 import javax.swing.*;
+
+import ar.edu.et7.business.Calculos;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,12 +28,15 @@ public class CftTab extends TabPanel {
     }
     
     private void calcular(ActionEvent e) {
+    	Calculos c;
         float resultado = 0;
         
         //TODO declarar una variable para cada campo
         float tna = 0;
         float gastosAsociados = 0;
 
+        c = new Calculos();
+        
         try {
             //TODO asignar el valor de cada campo a una variable
             tna = Float.parseFloat(tnaField.getText());
@@ -44,7 +50,8 @@ public class CftTab extends TabPanel {
         //TODO calcular el resultado
         // Supongamos que el cálculo del CFT (Costo Financiero Total) sigue la siguiente fórmula:
         // CFT = TNA + Gastos Asociados (Esto es solo un ejemplo simplificado)
-        resultado = tna + gastosAsociados;
+        
+        resultado = c.cft( tna, gastosAsociados);//tna + gastosAsociados;
         
         resultArea.setText("Resultado: " + resultado);
     }
