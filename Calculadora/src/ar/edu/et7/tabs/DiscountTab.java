@@ -26,12 +26,14 @@ public class DiscountTab extends TabPanel {
     }
     private void calcular(ActionEvent e) {
         float resultado = 0;
-        
+        float importe = 0;
+        float descuento = 0;
         //TODO declarar una variable para cada campo
 
         try {
         	//TODO asignar el valor de cada campo a una variable
-
+        	importe = Float.parseFloat(amountField.getText());
+	        descuento = Float.parseFloat(discountField.getText());
         } catch (NumberFormatException ex) {
             resultArea.setText("Error en la entrada: " + ex.getMessage());
             return;
@@ -39,7 +41,7 @@ public class DiscountTab extends TabPanel {
 
         
         //TODO calcular el resultado
-        resultado = 0;
+        resultado = importe - importe*(descuento/100);
         resultArea.setText("Resultado: " + resultado);
         
         
