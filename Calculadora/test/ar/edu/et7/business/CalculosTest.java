@@ -15,10 +15,15 @@ class CalculosTest {
     
 	@Test
 	void testDiscount() {
-		float result = calculos.discount(3.0f, 5.0f);
+		float result = calculos.discount(3.0f, 4.0f);
 		assertEquals(result, 7);
 	}
 	
+	@Test
+	void testcft() {
+		float result = calculos.cft(3.0f, 5.0f);
+		assertEquals(result, 8.0f);
+	}
 	//TODO escribir el test para cada cálculo
 
 }

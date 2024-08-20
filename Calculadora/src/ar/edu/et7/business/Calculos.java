@@ -8,6 +8,14 @@ public class Calculos implements CalculosInterface {
 		return 0;
 	}
 
+	@Override
+	public float cft(float tna, float gastosAsociados) {
+		// TODO Auto-generated method stub 
+		float resultado;
+		 resultado = tna + gastosAsociados;
+		return resultado;
+	}
+
 	//TODO implementar los métodos de la interface
 
 
