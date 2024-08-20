@@ -1,6 +1,9 @@
 package ar.edu.et7.tabs;
 
 import javax.swing.*;
+
+import ar.edu.et7.business.Calculos;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,12 +31,15 @@ public class FrenchSystemTab extends TabPanel {
     
     private void calcular(ActionEvent e) {
         float resultado = 0;
+        Calculos c;
         
         //TODO declarar una variable para cada campo
         float monto;
         float tna;
         int cuotas;
 
+        c = new Calculos();
+        
         try {
         	//TODO asignar el valor de cada campo a una variable
 	        monto = Float.parseFloat(montoField.getText());
@@ -46,7 +52,9 @@ public class FrenchSystemTab extends TabPanel {
 
         
         //TODO calcular el resultado
-        resultado = monto + tna + cuotas;
+        //resultado = monto + tna + cuotas;
+        c.sistemaFrances(tna, cuotas);
+        
         resultArea.setText("Resultado: " + resultado);
         
         

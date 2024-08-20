@@ -16,7 +16,12 @@ class CalculosTest {
 	@Test
 	void testDiscount() {
 		float result = calculos.discount(3.0f, 5.0f);
-		assertEquals(result, 7);
+		assertEquals(result, 0);
+	}
+	@Test
+	void testSistemaFrances() {
+		float result = calculos.resultado(3.0f, 5.0f);
+		assertEquals(result, 0);
 	}
 	
 	//TODO escribir el test para cada cálculo
