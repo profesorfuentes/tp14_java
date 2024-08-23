@@ -39,7 +39,7 @@ public class FinancialCalculatorApp extends JFrame {
 
         // TNA y TEA
         tnaTeaTab = new TnaTeaTab();
-        tabbedPane.addTab("TNA TEA", tnaTeaTab.getPane());
+        tabbedPane.addTab("TNA TEA", tnaTeaTab.getPane()); 
 
         // CFT
         cftTab = new CftTab();

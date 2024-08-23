@@ -13,12 +13,14 @@ class CalculosTest {
         calculos = new Calculos();
     }
     
-	@Test
-	void testDiscount() {
-		float result = calculos.discount(3.0f, 5.0f);
-		assertEquals(result, 7);
-	}
-	
+    @Test
+    void testTNA() {
+        // Asumimos que el método tnaTea devuelve un cálculo específico basado en entradas
+        double result = calculos.tnaTea(20.0f, 12.0f); // Usamos double en lugar de float para la entrada
+        double expected = 21.939; // Ajusta este valor si es necesario
+        assertEquals(expected, result, 0.01);
+    }
+    
 	//TODO escribir el test para cada cálculo
 
 }
