@@ -1,6 +1,9 @@
 package ar.edu.et7.tabs;
 
 import javax.swing.*;
+
+import ar.edu.et7.business.Calculos;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +36,7 @@ public class GermanSystemTab extends TabPanel {
         float monto;
         float tna;
         int cuotas;
+        Calculos c;
 
         try {
             // Asignar el valor de cada campo a una variable
@@ -44,33 +48,14 @@ public class GermanSystemTab extends TabPanel {
             return;
         }
 
+        c = new Calculos();
         // Calcular el resultado como calculadora con sistema alemán
-        List<String> resultados = calcularCuotasAleman(monto, tna, cuotas);
+        //List<String> resultados = calcularCuotasAleman(monto, tna, cuotas);
+        c.sistemaAleman(tna, cuotas, monto)
         resultArea.setText(String.join("\n", resultados));
     }
 
-    private List<String> calcularCuotasAleman(float monto, float tna, int cuotas) {
-        List<String> resultado = new ArrayList<>();
-        
-        // Convertir la TNA a una tasa de interés mensual
-        float tasaInteresMensual = tna / 100 / 12;
-        
-        // Calcular el monto fijo de principal por cuota
-        float cuotaFijaPrincipal = monto / cuotas;
-        
-        // Calcular el valor de cada cuota
-        for (int i = 1; i <= cuotas; i++) {
-            float saldoDeuda = monto - (cuotaFijaPrincipal * (i - 1));
-            float interes = saldoDeuda * tasaInteresMensual;
-            float cuotaTotal = cuotaFijaPrincipal + interes;
 
-            // Formatear el resultado para mostrar en el JTextArea
-            resultado.add(String.format("Cuota %d: %.2f (Principal: %.2f, Interés: %.2f)",
-                    i, cuotaTotal, cuotaFijaPrincipal, interes));
-        }
-        
-        return resultado;
-    }
 
     private void addInputFields(JPanel panel, JTextField field1, JTextField field2, JTextField field3, ActionListener action, JTextArea resultArea) {
         GridBagConstraints gbc = new GridBagConstraints();
