@@ -47,7 +47,7 @@ public class TnaTeaTab extends TabPanel {
         } catch (NumberFormatException ex) {
             resultArea.setText("Por favor, ingrese un valor numérico válido para TNA.");
         }
-       resultArea.setText("hola");
+       
     }
 
     private void addInputFields(JPanel panel, JTextField tnaField, JTextField teaField, ActionListener action, JTextArea resultArea) {
